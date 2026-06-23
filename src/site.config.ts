@@ -2,7 +2,7 @@ export const SITE = {
   title: "Notícias d'Astro",
   description:
     'As últimas notícias de Portugal e do mundo. Política, economia, tecnologia e mais.',
-  url: 'https://noticias-astro.ricardoffcs.workers.dev',
+  url: 'https://noticiasdastro.site',
   locale: 'pt_PT',
   adsensePublisherId: 'ca-pub-XXXXXXXXXXXXXXXX',
 };
