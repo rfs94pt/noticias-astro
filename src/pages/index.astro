@@ -5,22 +5,22 @@ import NoticiaCard from '../components/NoticiaCard.astro';
 import { ADS } from '../site.config';
 
 const noticias = await getCollection('noticias');
-const sorted = noticias
-  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+const sorted = noticias.sort(
+  (a, b) => b.data.date.getTime() - a.data.date.getTime(),
+);
 
 const hero = sorted[0];
-const rest = sorted.slice(1, 8);
-
-function formatDate(d: Date): string {
-  return d.toLocaleDateString('pt-PT', { day: 'numeric', month: 'short', year: 'numeric' });
-}
+const rest = sorted.slice(1);
 ---
 
 <BaseLayout>
   {hero && (
     <div class="hero">
       <a href={`/noticias/${hero.slug}`} class="hero-card">
-        <img src={hero.data.image ?? '/og-default.jpg'} alt={hero.data.title} />
+        <img
+          src={hero.data.image ?? '/og-default.jpg'}
+          alt={hero.data.title}
+        />
         <div class="hero-card-content">
           <span class="category">{hero.data.category}</span>
           <h2>{hero.data.title}</h2>
@@ -58,14 +58,6 @@ function formatDate(d: Date): string {
         </>
       ))}
     </div>
-
-    {sorted.length > 8 && (
-      <div style="text-align:center; margin-top:2rem;">
-        <a href="/noticias" style="color:var(--color-accent); font-weight:600;">
-          Ver todas as notícias →
-        </a>
-      </div>
-    )}
   </div>
 </BaseLayout>
 
