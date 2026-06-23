@@ -1,5 +1,5 @@
 export const SITE = {
-  title: 'Notícias do Astro',
+  title: "Notícias d'Astro",
   description:
     'As últimas notícias de Portugal e do mundo. Política, economia, tecnologia e mais.',
   url: 'https://noticias-astro.ricardoffcs.workers.dev',

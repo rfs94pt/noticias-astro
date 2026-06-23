@@ -91,7 +91,7 @@ h3 { font-size: clamp(1.15rem, 2vw, 1.35rem); }
   font-size: 1.35rem;
   font-weight: 800;
   letter-spacing: -0.5px;
-  text-transform: lowercase;
+  text-transform: none;
   text-decoration: none;
 }
 
@@ -654,7 +654,7 @@ h3 { font-size: clamp(1.15rem, 2vw, 1.35rem); }
   }
 
   .cookie-buttons {
-    justify-content: center;
+  justify-content: flex-start;
   }
 }
 
