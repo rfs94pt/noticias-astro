@@ -2,7 +2,7 @@ export const SITE = {
   title: 'Notícias do Astro',
   description:
     'As últimas notícias de Portugal e do mundo. Política, economia, tecnologia e mais.',
-  url: 'https://astro-blog-starter-template1.ricardoffcs.workers.dev',
+  url: 'https://noticias-astro.ricardoffcs.workers.dev',
   locale: 'pt_PT',
   adsensePublisherId: 'ca-pub-XXXXXXXXXXXXXXXX',
 };
