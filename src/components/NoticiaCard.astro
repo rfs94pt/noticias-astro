@@ -1,0 +1,36 @@
+---
+interface Props {
+  title: string;
+  description: string;
+  slug: string;
+  category: string;
+  date: Date;
+  image?: string;
+}
+const { title, description, slug, category, date, image } = Astro.props;
+const formattedDate = date.toLocaleDateString('pt-PT', {
+  day: 'numeric',
+  month: 'short',
+  year: 'numeric',
+});
+---
+
+<article class="news-card">
+  <a href={`/noticias/${slug}`}>
+    <img
+      src={image ?? '/og-default.jpg'}
+      alt={title}
+      class="news-card-image"
+      loading="lazy"
+      decoding="async"
+    />
+    <div class="news-card-body">
+      <span class="news-card-category">{category}</span>
+      <h3 class="news-card-title">{title}</h3>
+      <p class="news-card-desc">{description}</p>
+      <time class="news-card-date" datetime={date.toISOString()}>
+        {formattedDate}
+      </time>
+    </div>
+  </a>
+</article>

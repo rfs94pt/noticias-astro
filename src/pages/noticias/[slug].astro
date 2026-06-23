@@ -1,0 +1,67 @@
+---
+import { getCollection } from 'astro:content';
+import { SITE } from '../../site.config';
+import NoticiaLayout from '../../layouts/NoticiaLayout.astro';
+import AdInContent from '../../components/ads/AdInContent.astro';
+
+interface Props {
+  slug: string;
+}
+
+export async function getStaticPaths() {
+  const noticias = await getCollection('noticias');
+  return noticias.map((n) => ({ params: { slug: n.slug } }));
+}
+
+const { slug } = Astro.params;
+const noticia = (await getCollection('noticias')).find((n) => n.slug === slug);
+
+if (!noticia) {
+  return Astro.redirect('/404');
+}
+
+const { title, description, date, category, image, tags } = noticia.data;
+const { Content } = await noticia.render();
+
+const formattedDate = date.toLocaleDateString('pt-PT', {
+  day: 'numeric',
+  month: 'long',
+  year: 'numeric',
+});
+
+const canonicalURL = `${SITE.url}/noticias/${slug}`;
+---
+
+<NoticiaLayout
+  title={title}
+  description={description}
+  image={image ?? `${SITE.url}/og-default.jpg`}
+  {canonicalURL}
+>
+  <header class="article-header">
+    <nav class="breadcrumb">
+      <a href="/">Início</a>
+      <span>/</span>
+      <a href={`/categorias/${category.toLowerCase()}`}>{category}</a>
+      <span>/</span>
+      <span>{title}</span>
+    </nav>
+    <span class="article-category">{category}</span>
+    <h1>{title}</h1>
+    <time class="article-date" datetime={date.toISOString()}>{formattedDate}</time>
+    {image && (
+      <img src={image} alt={title} class="article-image" decoding="async" />
+    )}
+  </header>
+
+  <div class="article-content">
+    <Content />
+    <AdInContent />
+  </div>
+
+  {tags && tags.length > 0 && (
+    <div class="article-tags">
+      {tags.map((t: string) => <span class="article-tag">{t}</span>)}
+    </div>
+  )}
+</NoticiaLayout>

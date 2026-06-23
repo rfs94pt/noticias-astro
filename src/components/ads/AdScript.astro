@@ -1,0 +1,11 @@
+---
+import { ADS, SITE } from '../../site.config';
+---
+
+{ADS.enabled && (
+  <script
+    async
+    src={`https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client=${SITE.adsensePublisherId}`}
+    crossorigin="anonymous"
+  ></script>
+)}

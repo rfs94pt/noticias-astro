@@ -1,0 +1,51 @@
+---
+import { SITE } from '../site.config';
+
+const currentPath = Astro.url.pathname;
+const categories = [
+  { slug: 'politica', label: 'Política' },
+  { slug: 'economia', label: 'Economia' },
+  { slug: 'tecnologia', label: 'Tecnologia' },
+  { slug: 'desporto', label: 'Desporto' },
+  { slug: 'mundo', label: 'Mundo' },
+  { slug: 'cultura', label: 'Cultura' },
+];
+---
+
+<header class="site-header">
+  <div class="header-inner">
+    <a href="/" class="site-logo">
+      Notícias<span>Hoje</span>
+    </a>
+
+    <button class="menu-toggle" id="menu-toggle" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+
+    <nav>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="/" class:list={['active', currentPath === '/']}>Início</a></li>
+        {
+          categories.map((cat) => (
+            <li>
+              <a
+                href={`/categorias/${cat.slug}`}
+                class:list={['active', currentPath === `/categorias/${cat.slug}`]}
+              >
+                {cat.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<script>
+  const toggle = document.getElementById('menu-toggle');
+  const nav = document.getElementById('nav-links');
+  toggle?.addEventListener('click', () => {
+    nav?.classList.toggle('open');
+  });
+</script>

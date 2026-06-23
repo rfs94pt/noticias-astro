@@ -1,0 +1,69 @@
+---
+import { SITE, ADS } from '../../site.config';
+---
+
+{ADS.enabled && (
+  <>
+    <div class="ad-overlay" id="ad-overlay" style="display:none;">
+      <div class="ad-overlay-box">
+        <ins
+          class="adsbygoogle"
+          style="display:block; width:300px; height:250px; margin:0 auto;"
+          data-ad-client={SITE.adsensePublisherId}
+          data-ad-slot={ADS.overlayId}
+          data-ad-format="auto"
+          data-full-width-responsive="true"
+        ></ins>
+        <p class="ad-overlay-timer" id="ad-timer">Pode fechar em {ADS.overlaySeconds}s</p>
+        <button class="ad-overlay-close" id="ad-close">Fechar e continuar a ler →</button>
+      </div>
+    </div>
+
+    <script define:vars={{
+      overlayCooldownMinutes: ADS.overlayCooldownMinutes,
+      overlaySeconds: ADS.overlaySeconds,
+    }}>
+      function initAdOverlay() {
+        var overlay = document.getElementById('ad-overlay');
+        var timerEl = document.getElementById('ad-timer');
+        var closeBtn = document.getElementById('ad-close');
+        if (!overlay || !timerEl || !closeBtn) return;
+
+        var cooldownKey = 'ad_overlay_last_shown';
+        var now = Date.now();
+        var lastShown = parseInt(sessionStorage.getItem(cooldownKey) || '0', 10);
+        var cooldownMs = overlayCooldownMinutes * 60 * 1000;
+
+        if (lastShown && now - lastShown < cooldownMs) return;
+
+        overlay.style.display = 'flex';
+        sessionStorage.setItem(cooldownKey, now.toString());
+
+        var seconds = overlaySeconds;
+        timerEl.textContent = 'Pode fechar em ' + seconds + 's';
+
+        var countdown = setInterval(function () {
+          seconds--;
+          if (seconds <= 0) {
+            clearInterval(countdown);
+            timerEl.textContent = '';
+            closeBtn.classList.add('visible');
+          } else {
+            timerEl.textContent = 'Pode fechar em ' + seconds + 's';
+          }
+        }, 1000);
+
+        closeBtn.addEventListener('click', function () {
+          overlay.style.display = 'none';
+        });
+
+        try {
+          window['adsbygoogle'] = window['adsbygoogle'] || [];
+          window['adsbygoogle'].push({});
+        } catch (_) {}
+      }
+
+      document.addEventListener('DOMContentLoaded', initAdOverlay);
+    </script>
+  </>
+)}

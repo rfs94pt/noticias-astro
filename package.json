@@ -1,0 +1,17 @@
+{
+  "name": "noticias-astro",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview"
+  },
+  "dependencies": {
+    "@astrojs/cloudflare": "^12.6.6",
+    "@astrojs/rss": "^4.0.18",
+    "@astrojs/sitemap": "^3.3.0",
+    "astro": "^5.7.13"
+  }
+}

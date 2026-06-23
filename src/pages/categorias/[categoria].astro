@@ -1,0 +1,48 @@
+---
+import { getCollection } from 'astro:content';
+import { SITE } from '../../site.config';
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import NoticiaCard from '../../components/NoticiaCard.astro';
+
+interface Props {
+  categoria: string;
+}
+
+export async function getStaticPaths() {
+  const noticias = await getCollection('noticias');
+  const categorias = [...new Set(noticias.map((n) => n.data.category.toLowerCase()))];
+  return categorias.map((c) => ({ params: { categoria: c } }));
+}
+
+const { categoria } = Astro.params;
+const noticias = await getCollection('noticias');
+const filtradas = noticias
+  .filter((n) => n.data.category.toLowerCase() === categoria)
+  .sort((a, b) => b.data.date.getTime() - a.data.date.getTime());
+
+const nomeCategoria = categoria.charAt(0).toUpperCase() + categoria.slice(1);
+---
+
+<BaseLayout title={`${nomeCategoria} — ${SITE.title}`}>
+  <div class="page-wrapper">
+    <h1 class="section-title">{nomeCategoria}</h1>
+    {
+      filtradas.length === 0 ? (
+        <p>Nenhuma notícia encontrada nesta categoria.</p>
+      ) : (
+        <div class="news-grid">
+          {filtradas.map((n) => (
+            <NoticiaCard
+              title={n.data.title}
+              description={n.data.description}
+              slug={n.slug}
+              category={n.data.category}
+              date={n.data.date}
+              image={n.data.image}
+            />
+          ))}
+        </div>
+      )
+    }
+  </div>
+</BaseLayout>

@@ -1,0 +1,37 @@
+---
+import { SITE, ADS } from '../../site.config';
+---
+
+{ADS.enabled && (
+  <aside class="sidebar" aria-label="Publicidade">
+    <div class="ad-zone ad-sidebar">
+      <ins
+        class="adsbygoogle"
+        style="display:block"
+        data-ad-client={SITE.adsensePublisherId}
+        data-ad-slot={ADS.sidebarTopId}
+        data-ad-format="vertical"
+        data-full-width-responsive="true"
+      ></ins>
+    </div>
+    <div class="ad-zone ad-sidebar">
+      <ins
+        class="adsbygoogle"
+        style="display:block"
+        data-ad-client={SITE.adsensePublisherId}
+        data-ad-slot={ADS.sidebarBottomId}
+        data-ad-format="rectangle"
+        data-full-width-responsive="true"
+      ></ins>
+    </div>
+  </aside>
+)}
+
+<script>
+  document.addEventListener('DOMContentLoaded', () => {
+    try {
+      window['adsbygoogle'] = window['adsbygoogle'] || [];
+      window['adsbygoogle'].push({});
+    } catch (_) {}
+  });
+</script>

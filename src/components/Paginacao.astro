@@ -1,0 +1,49 @@
+---
+interface Props {
+  page: {
+    currentPage: number;
+    lastPage: number;
+    url: {
+      current: string;
+      prev?: string;
+      next?: string;
+    };
+  };
+}
+const { page } = Astro.props;
+const { currentPage, lastPage, url } = page;
+
+function pageUrl(n: number): string {
+  const base = '/noticias';
+  if (n === 1) return base;
+  return `${base}/pagina/${n}`;
+}
+---
+
+{
+  lastPage > 1 && (
+    <nav class="pagination" aria-label="Paginação">
+      {url.prev && <a href={url.prev}>&laquo; Anterior</a>}
+
+      {Array.from({ length: lastPage }, (_, i) => i + 1)
+        .filter(
+          (n) =>
+            n === 1 ||
+            n === lastPage ||
+            (n >= currentPage - 1 && n <= currentPage + 1),
+        )
+        .map((n, i, arr) => (
+          <>
+            {i > 0 && n - arr[i - 1] > 1 && <span>...</span>}
+            {n === currentPage ? (
+              <span class="current">{n}</span>
+            ) : (
+              <a href={pageUrl(n)}>{n}</a>
+            )}
+          </>
+        ))}
+
+      {url.next && <a href={url.next}>Seguinte &raquo;</a>}
+    </nav>
+  )
+}

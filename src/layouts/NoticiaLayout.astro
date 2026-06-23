@@ -1,0 +1,29 @@
+---
+import BaseLayout from './BaseLayout.astro';
+import AdSidebar from '../components/ads/AdSidebar.astro';
+import AdBanner from '../components/ads/AdBanner.astro';
+import AdInContent from '../components/ads/AdInContent.astro';
+import AdOverlay from '../components/ads/AdOverlay.astro';
+
+interface Props {
+  title: string;
+  description: string;
+  image?: string;
+  canonicalURL?: string;
+}
+
+const { title, description, image, canonicalURL } = Astro.props;
+---
+
+<BaseLayout {title} {description} {image} {canonicalURL}>
+  <AdBanner />
+  <div class="content-with-sidebar">
+    <main>
+      <article>
+        <slot />
+      </article>
+    </main>
+    <AdSidebar />
+  </div>
+  <AdOverlay />
+</BaseLayout>

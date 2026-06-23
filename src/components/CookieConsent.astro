@@ -1,0 +1,38 @@
+<div class="cookie-consent" id="cookie-consent" style="display:none;">
+  <p>
+    Este site utiliza cookies e tecnologias semelhantes para fins de publicidade personalizada,
+    análise de tráfego e funcionalidades essenciais.
+  </p>
+  <div class="cookie-buttons">
+    <button class="cookie-btn reject" id="cookie-reject">Rejeitar</button>
+    <button class="cookie-btn accept" id="cookie-accept">Aceitar</button>
+  </div>
+</div>
+
+<script>
+  function initCookieConsent() {
+    const banner = document.getElementById('cookie-consent');
+    const storageKey = 'cookie_consent';
+    if (!banner) return;
+
+    const consent = localStorage.getItem(storageKey);
+    if (consent === 'accepted' || consent === 'rejected') return;
+
+    banner.style.display = 'flex';
+
+    const acceptBtn = document.getElementById('cookie-accept');
+    const rejectBtn = document.getElementById('cookie-reject');
+
+    acceptBtn?.addEventListener('click', () => {
+      localStorage.setItem(storageKey, 'accepted');
+      banner.style.display = 'none';
+    });
+
+    rejectBtn?.addEventListener('click', () => {
+      localStorage.setItem(storageKey, 'rejected');
+      banner.style.display = 'none';
+    });
+  }
+
+  document.addEventListener('DOMContentLoaded', initCookieConsent);
+</script>

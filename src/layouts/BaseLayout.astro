@@ -1,0 +1,63 @@
+---
+import { SITE } from '../site.config';
+import Header from '../components/Header.astro';
+import Footer from '../components/Footer.astro';
+import CookieConsent from '../components/CookieConsent.astro';
+import AdScript from '../components/ads/AdScript.astro';
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+  image?: string;
+  canonicalURL?: string;
+}
+
+const {
+  title = SITE.title,
+  description = SITE.description,
+  image = `${SITE.url}/og-default.jpg`,
+  canonicalURL,
+} = Astro.props;
+
+const fullTitle = title === SITE.title ? title : `${title} — ${SITE.title}`;
+---
+
+<!doctype html>
+<html lang={SITE.locale}>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{fullTitle}</title>
+    <meta name="description" content={description} />
+
+    <link rel="canonical" href={canonicalURL ?? Astro.url.href} />
+    <link rel="sitemap" href="/sitemap-index.xml" />
+
+    <meta property="og:title" content={fullTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:image" content={image} />
+    <meta property="og:url" content={canonicalURL ?? Astro.url.href} />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content={SITE.locale} />
+
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={fullTitle} />
+    <meta name="twitter:description" content={description} />
+    <meta name="twitter:image" content={image} />
+
+    <meta name="robots" content="index, follow" />
+
+    <link rel="alternate" type="application/rss+xml" title={SITE.title} href="/rss.xml" />
+
+    <AdScript />
+  </head>
+  <body>
+    <Header />
+
+    <slot />
+
+    <Footer />
+    <CookieConsent />
+  </body>
+</html>
