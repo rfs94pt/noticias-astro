@@ -1,9 +1,9 @@
 ---
 title: 'Eleições Autárquicas 2026: abstenção atinge novo recorde histórico'
 description: 'A taxa de abstenção nas eleições autárquicas de 2026 atingiu os 48%, o valor mais alto de sempre em eleições locais em Portugal.'
-date: 2026-06-24
+date: 2026-06-24T08:00:00
 category: 'Política'
-image: '/imagens/noticias/eleicoes-autarquicas-abstencao-atinge-novo-recorde-historico/Eleicoes-autarquicas-abestencao-atinge-novo-lime-historico.png'
+image: '/imagens/noticias/eleicoes-autarquicas-abstencao-atinge-novo-recorde-historico/eleicoes-autarquicas-abstencao-atinge-novo-recorde-historico.jpg'
 tags: ['eleições', 'autárquicas', 'abstenção', 'política']
 ---
 

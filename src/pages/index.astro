@@ -6,7 +6,7 @@ import { ADS } from '../site.config';
 
 const noticias = await getCollection('noticias');
 const sorted = noticias.sort(
-  (a, b) => b.data.date.getTime() - a.data.date.getTime(),
+  (a, b) => b.data.date.getTime() - a.data.date.getTime() || b.slug.localeCompare(a.slug),
 );
 
 const hero = sorted[0];

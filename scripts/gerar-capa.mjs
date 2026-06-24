@@ -6,11 +6,9 @@ import { fileURLToPath } from 'url';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..');
 
-function buildPrompt(title, description) {
-  return `Professional news article cover image. Editorial journalism photography style. ${title}. Context: ${description}. Cinematic lighting, photorealistic, wide 16:9 composition, professional color grading, no text overlay, Portuguese news media style, high quality, sharp focus, dramatic but tasteful.`.replace(
-    /\s+/g,
-    ' ',
-  );
+function buildPrompt(title) {
+  const p = `Abstract editorial background for news website header. Soft blurred gradient shapes, subtle geometric diagonal lines, dark moody tones with #e63946 red accent color. No text, no letters, no words, no people, no photorealistic elements. Purely abstract. Newspaper editorial brand identity. Wide 16:9. Portuguese news media "Notícias d'Astro" style. Clean modern design.`;
+  return p.replace(/\s+/g, ' ');
 }
 
 async function generateImage(prompt) {
@@ -40,16 +38,16 @@ async function main() {
 
   const raw = readFileSync(mdPath, 'utf-8');
   const { data } = matter(raw);
-  const { title, description } = data;
+  const { title } = data;
 
   if (!title) {
     console.error('A notícia não tem campo "title" no frontmatter.');
     process.exit(1);
   }
 
-  console.log(`📰 A gerar capa para: "${title}"`);
+  console.log(`📰 A gerar capa abstrata para: "${title}"`);
 
-  const prompt = buildPrompt(title, description);
+  const prompt = buildPrompt(title);
   console.log(`⏳ A chamar Pollinations AI (grátis)...`);
 
   const image = await generateImage(prompt);
@@ -57,18 +55,17 @@ async function main() {
   const imgDir = join(ROOT, 'public/imagens/noticias', slug);
   mkdirSync(imgDir, { recursive: true });
 
-  const imgPath = join(imgDir, 'capa.jpg');
+  const filename = `${slug}.jpg`;
+  const imgPath = join(imgDir, filename);
   writeFileSync(imgPath, image);
 
-  console.log(`✅ Capa gerada: public/imagens/noticias/${slug}/capa.jpg`);
+  console.log(`✅ Capa gerada: public/imagens/noticias/${slug}/${filename}`);
   console.log(`   Tamanho: ${(image.length / 1024).toFixed(1)} KB`);
 
-  const imageField = `/imagens/noticias/${slug}/capa.jpg`;
-  if (!raw.includes(imageField)) {
-    const newRaw = raw.replace(/image:.*/, `image: '${imageField}'`);
-    writeFileSync(mdPath, newRaw);
-    console.log(`✅ Frontmatter atualizado: image → '${imageField}'`);
-  }
+  const imageField = `/imagens/noticias/${slug}/${filename}`;
+  const newRaw = raw.replace(/image:.*/, `image: '${imageField}'`);
+  writeFileSync(mdPath, newRaw);
+  console.log(`✅ Frontmatter atualizado: image → '${imageField}'`);
 
   console.log('\n🚀 Pronto! Faz build e deploy.');
 }

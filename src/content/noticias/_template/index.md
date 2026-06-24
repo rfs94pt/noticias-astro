@@ -1,7 +1,7 @@
 ---
 title: 'Título da Notícia'
 description: 'Breve descrição da notícia para SEO e para os cards da página inicial.'
-date: 2026-06-24
+date: 2026-06-24T10:00:00
 category: 'Notícias'
 image: '// GERADO POR: node scripts/gerar-capa.mjs nome-da-noticia'
 tags: ['tag1', 'tag2']
