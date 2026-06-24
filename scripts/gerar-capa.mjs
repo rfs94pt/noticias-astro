@@ -6,42 +6,23 @@ import { fileURLToPath } from 'url';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..');
 
-const CF_ACCOUNT_ID = '9fc117ff3c21e7b8e071d6480d263259';
-const CF_TOKEN =
-  'cfoat_mwqV5lfSi0VOLZrkuNQgdYhQ5StgSSdU46BBfRQu56g.iMGgW0XMkeoMmhjyHlPiJidoNaTRaAdP2wDos1khzi0';
-const CF_API = `https://api.cloudflare.com/client/v4/accounts/${CF_ACCOUNT_ID}/ai/run/@cf/black-forest-labs/flux-1-schnell`;
+function buildPrompt(title, description) {
+  return `Professional news article cover image. Editorial journalism photography style. ${title}. Context: ${description}. Cinematic lighting, photorealistic, wide 16:9 composition, professional color grading, no text overlay, Portuguese news media style, high quality, sharp focus, dramatic but tasteful.`.replace(
+    /\s+/g,
+    ' ',
+  );
+}
 
 async function generateImage(prompt) {
-  const body = JSON.stringify({
-    prompt,
-    num_steps: 4,
-    width: 1200,
-    height: 630,
-  });
+  const url = `https://image.pollinations.ai/prompt/${encodeURIComponent(prompt)}?width=1200&height=630&model=flux&nologo=true`;
 
-  const res = await fetch(CF_API, {
-    method: 'POST',
-    headers: {
-      Authorization: `Bearer ${CF_TOKEN}`,
-      'Content-Type': 'application/json',
-    },
-    body,
-  });
-
+  const res = await fetch(url);
   if (!res.ok) {
-    const err = await res.text();
-    throw new Error(`Cloudflare AI error ${res.status}: ${err}`);
+    throw new Error(`Pollinations error ${res.status}`);
   }
 
   const buffer = await res.arrayBuffer();
   return Buffer.from(buffer);
-}
-
-function buildPrompt(title, description) {
-  return `Professional news article cover image. Editorial journalism style. 
-Headline: "${title}". 
-Context: ${description}. 
-Style: clean, modern, photorealistic, no text overlay, dramatic lighting, wide composition 16:9 ratio, high quality, suitable for news website hero banner. Portuguese news context. Neutral colors with subtle red accent.`;
 }
 
 async function main() {
@@ -67,10 +48,10 @@ async function main() {
   }
 
   console.log(`📰 A gerar capa para: "${title}"`);
-  console.log(`🎨 Prompt: ${buildPrompt(title, description).slice(0, 150)}...`);
-  console.log('⏳ A chamar Cloudflare Workers AI (pode demorar ~15 segundos)...');
 
   const prompt = buildPrompt(title, description);
+  console.log(`⏳ A chamar Pollinations AI (grátis)...`);
+
   const image = await generateImage(prompt);
 
   const imgDir = join(ROOT, 'public/imagens/noticias', slug);
@@ -81,19 +62,15 @@ async function main() {
 
   console.log(`✅ Capa gerada: public/imagens/noticias/${slug}/capa.jpg`);
   console.log(`   Tamanho: ${(image.length / 1024).toFixed(1)} KB`);
-  console.log('');
-  console.log('📝 A atualizar frontmatter com o caminho da imagem...');
 
   const imageField = `/imagens/noticias/${slug}/capa.jpg`;
-  const newRaw = raw.replace(
-    /image:.*/,
-    `image: '${imageField}'`,
-  );
-  writeFileSync(mdPath, newRaw);
+  if (!raw.includes(imageField)) {
+    const newRaw = raw.replace(/image:.*/, `image: '${imageField}'`);
+    writeFileSync(mdPath, newRaw);
+    console.log(`✅ Frontmatter atualizado: image → '${imageField}'`);
+  }
 
-  console.log(`✅ Frontmatter atualizado: image → '${imageField}'`);
-  console.log('');
-  console.log('🚀 Pronto! Faz build e deploy.');
+  console.log('\n🚀 Pronto! Faz build e deploy.');
 }
 
 main().catch((err) => {
