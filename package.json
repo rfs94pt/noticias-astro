@@ -12,7 +12,8 @@
     "@astrojs/cloudflare": "^12.6.6",
     "@astrojs/rss": "^4.0.18",
     "@astrojs/sitemap": "^3.3.0",
-    "astro": "^5.7.13"
+    "astro": "^5.7.13",
+    "gray-matter": "^4.0.3"
   },
   "devDependencies": {
     "wrangler": "^4.103.0"

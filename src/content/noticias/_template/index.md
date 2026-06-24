@@ -3,8 +3,10 @@ title: 'Título da Notícia'
 description: 'Breve descrição da notícia para SEO e para os cards da página inicial.'
 date: 2026-06-24
 category: 'Notícias'
-image: '/imagens/noticias/template/capa.jpg'
+image: '// GERADO POR: node scripts/gerar-capa.mjs nome-da-noticia'
 tags: ['tag1', 'tag2']
+author: "Notícias d'Astro"
+source: 'Nome da fonte original'
 ---
 
 Texto introdutório — o **lead** da notícia. Responde às perguntas essenciais: quem, o quê, quando, onde e porquê. Deve ser curto e direto, 2 a 3 frases no máximo.

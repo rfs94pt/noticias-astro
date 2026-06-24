@@ -30,6 +30,35 @@ const formattedDate = date.toLocaleDateString('pt-PT', {
 });
 
 const canonicalURL = `${SITE.url}/noticias/${slug}`;
+
+const jsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'NewsArticle',
+  headline: title,
+  description: description,
+  datePublished: date.toISOString(),
+  dateModified: date.toISOString(),
+  image: image ?? `${SITE.url}/og-default.jpg`,
+  url: canonicalURL,
+  author: {
+    '@type': 'Organization',
+    name: SITE.title,
+    url: SITE.url,
+  },
+  publisher: {
+    '@type': 'Organization',
+    name: SITE.title,
+    url: SITE.url,
+    logo: {
+      '@type': 'ImageObject',
+      url: `${SITE.url}/og-default.jpg`,
+    },
+  },
+  mainEntityOfPage: {
+    '@type': 'WebPage',
+    '@id': canonicalURL,
+  },
+};
 ---
 
 <NoticiaLayout
@@ -62,4 +91,6 @@ const canonicalURL = `${SITE.url}/noticias/${slug}`;
       {tags.map((t: string) => <span class="article-tag">{t}</span>)}
     </div>
   )}
+
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)}></script>
 </NoticiaLayout>
