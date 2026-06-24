@@ -3,7 +3,6 @@ import BaseLayout from './BaseLayout.astro';
 import AdSidebar from '../components/ads/AdSidebar.astro';
 import AdBanner from '../components/ads/AdBanner.astro';
 import AdInContent from '../components/ads/AdInContent.astro';
-import AdOverlay from '../components/ads/AdOverlay.astro';
 
 interface Props {
   title: string;
@@ -25,5 +24,4 @@ const { title, description, image, canonicalURL } = Astro.props;
     </main>
     <AdSidebar />
   </div>
-  <AdOverlay />
 </BaseLayout>
