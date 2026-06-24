@@ -4,11 +4,11 @@ export const SITE = {
     'As últimas notícias de Portugal e do mundo. Política, economia, tecnologia e mais.',
   url: 'https://noticiasdastro.site',
   locale: 'pt_PT',
-  adsensePublisherId: 'ca-pub-XXXXXXXXXXXXXXXX',
+  adsensePublisherId: 'ca-pub-1241107508480595',
 };
 
 export const ADS = {
-  enabled: false,
+  enabled: true,
   overlaySeconds: 5,
   overlayCooldownMinutes: 30,
   bannerDesktopId: '1234567890',
