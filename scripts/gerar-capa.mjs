@@ -6,8 +6,8 @@ import { fileURLToPath } from 'url';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = join(__dirname, '..');
 
-function buildPrompt(title) {
-  const p = `Abstract editorial background for news website header. Soft blurred gradient shapes, subtle geometric diagonal lines, dark moody tones with #e63946 red accent color. No text, no letters, no words, no people, no photorealistic elements. Purely abstract. Newspaper editorial brand identity. Wide 16:9. Portuguese news media "Notícias d'Astro" style. Clean modern design.`;
+function buildPrompt(title, description) {
+  const p = `Professional news article cover photo, photorealistic, editorial journalism photography. Topic: "${title}". Context: ${description}. Cinematic lighting, wide 16:9 composition, professional color grading, high quality, sharp focus, natural colors, press photography style, Portuguese news media look`;
   return p.replace(/\s+/g, ' ');
 }
 
@@ -38,7 +38,7 @@ async function main() {
 
   const raw = readFileSync(mdPath, 'utf-8');
   const { data } = matter(raw);
-  const { title } = data;
+  const { title, description } = data;
 
   if (!title) {
     console.error('A notícia não tem campo "title" no frontmatter.');
@@ -47,7 +47,7 @@ async function main() {
 
   console.log(`📰 A gerar capa abstrata para: "${title}"`);
 
-  const prompt = buildPrompt(title);
+  const prompt = buildPrompt(title, description);
   console.log(`⏳ A chamar Pollinations AI (grátis)...`);
 
   const image = await generateImage(prompt);
