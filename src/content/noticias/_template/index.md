@@ -7,6 +7,7 @@ image: '// GERADO POR: node scripts/gerar-capa.mjs nome-da-noticia'
 tags: ['tag1', 'tag2']
 author: "Notícias d'Astro"
 source: 'Nome da fonte original'
+sourceImage: 'https://images.unsplash.com/photo-SUBSTITUIR?w=1200&q=85'
 ---
 
 Texto introdutório — o **lead** da notícia. Responde às perguntas essenciais: quem, o quê, quando, onde e porquê. Deve ser curto e direto, 2 a 3 frases no máximo.

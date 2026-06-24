@@ -10,6 +10,7 @@ const noticias = defineCollection({
     tags: z.array(z.string()).optional(),
     author: z.string().optional().default("Notícias d'Astro"),
     source: z.string().optional(),
+    sourceImage: z.string().optional(),
   }),
 });
 

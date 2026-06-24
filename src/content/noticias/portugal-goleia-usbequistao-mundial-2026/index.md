@@ -3,10 +3,11 @@ title: 'Portugal goleia Usbequistão por 5-0 e Ronaldo ultrapassa Eusébio no Mu
 description: 'Seleção Nacional vence com golos de Ronaldo (2), Bernardo Silva, Rafael Leão e João Félix. Cristiano Ronaldo tornou-se o maior goleador português da história dos Mundiais.'
 date: 2026-06-24T21:00:00
 category: 'Desporto'
-image: '/imagens/noticias/portugal-goleia-usbequistao-mundial-2026/portugal-goleia-usbequistao-mundial-2026.jpg?v=2'
+image: '/imagens/noticias/portugal-goleia-usbequistao-mundial-2026/portugal-goleia-usbequistao-mundial-2026.jpg'
 tags: ['Mundial 2026', 'Portugal', 'Ronaldo', 'seleção', 'futebol']
 author: "Notícias d'Astro"
 source: 'Diário de Notícias'
+sourceImage: 'https://images.unsplash.com/photo-1574629810360-7efbbe195018?w=1200&q=85'
 ---
 
 Portugal goleou o Usbequistão por 5-0 na madrugada desta terça-feira, num jogo que ficará na história do futebol português. Cristiano Ronaldo marcou dois golos e ultrapassou Eusébio como o maior goleador português de sempre em Campeonatos do Mundo.
