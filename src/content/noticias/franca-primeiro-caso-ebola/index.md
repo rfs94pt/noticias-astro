@@ -1,7 +1,7 @@
 ---
 title: 'França reporta primeiro caso de Ébola no país'
 description: 'Médico francês regressado da República Democrática do Congo diagnosticado com o vírus. Ministério da Saúde francês confirma o primeiro caso e ativa protocolo de emergência.'
-date: 2026-06-24T12:47:00
+date: 2026-06-24T22:45:00
 category: 'Mundo'
 image: '/imagens/noticias/franca-primeiro-caso-ebola/franca-primeiro-caso-ebola.jpg'
 tags: ['ébola', 'França', 'saúde', 'RDC', 'OMS', 'vírus']
