@@ -4,6 +4,7 @@ import Header from '../components/Header.astro';
 import Footer from '../components/Footer.astro';
 import CookieConsent from '../components/CookieConsent.astro';
 import AdScript from '../components/ads/AdScript.astro';
+import AdBanner from '../components/ads/AdBanner.astro';
 import '../styles/global.css';
 
 interface Props {
@@ -60,6 +61,8 @@ const fullTitle = title === SITE.title ? title : `${title} — ${SITE.title}`;
   </head>
   <body>
     <Header />
+
+    <AdBanner />
 
     <slot />
 

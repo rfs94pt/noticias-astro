@@ -3,6 +3,7 @@ import { getCollection } from 'astro:content';
 import { SITE } from '../../site.config';
 import BaseLayout from '../../layouts/BaseLayout.astro';
 import NoticiaCard from '../../components/NoticiaCard.astro';
+import AdSidebar from '../../components/ads/AdSidebar.astro';
 
 interface Props {
   categoria: string;
@@ -24,25 +25,28 @@ const nomeCategoria = categoria.charAt(0).toUpperCase() + categoria.slice(1);
 ---
 
 <BaseLayout title={`${nomeCategoria} — ${SITE.title}`}>
-  <div class="page-wrapper">
-    <h1 class="section-title">{nomeCategoria}</h1>
-    {
-      filtradas.length === 0 ? (
-        <p>Nenhuma notícia encontrada nesta categoria.</p>
-      ) : (
-        <div class="news-grid">
-          {filtradas.map((n) => (
-            <NoticiaCard
-              title={n.data.title}
-              description={n.data.description}
-              slug={n.slug}
-              category={n.data.category}
-              date={n.data.date}
-              image={n.data.image}
-            />
-          ))}
-        </div>
-      )
-    }
+  <div class="content-with-sidebar">
+    <main>
+      <h1 class="section-title">{nomeCategoria}</h1>
+      {
+        filtradas.length === 0 ? (
+          <p>Nenhuma notícia encontrada nesta categoria.</p>
+        ) : (
+          <div class="news-grid">
+            {filtradas.map((n) => (
+              <NoticiaCard
+                title={n.data.title}
+                description={n.data.description}
+                slug={n.slug}
+                category={n.data.category}
+                date={n.data.date}
+                image={n.data.image}
+              />
+            ))}
+          </div>
+        )
+      }
+    </main>
+    <AdSidebar />
   </div>
 </BaseLayout>

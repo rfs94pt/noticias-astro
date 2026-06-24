@@ -33,32 +33,31 @@ function wrapText(text, maxCharsPerLine) {
 }
 
 function svgTextOverlay(lines) {
-  const lineHeight = 70;
-  const maxLines = 5;
+  const lineHeight = 64;
+  const maxLines = 4;
   const displayLines = lines.slice(0, maxLines);
-  const startY = 220;
+  const startY = 240;
 
   const texts = displayLines
     .map(
       (line, i) =>
-        `<text x="${W / 2}" y="${startY + i * lineHeight}" text-anchor="middle" fill="white" font-family="Arial, Helvetica, sans-serif" font-weight="900" font-size="48" stroke="#000000" stroke-width="4" paint-order="stroke" stroke-linejoin="round">${line}</text>`,
+        `<text x="60" y="${startY + i * lineHeight}" fill="#ffffff" font-family="'Arial Black', Impact, 'Helvetica Neue', sans-serif" font-weight="900" font-size="50" stroke="#0d0d0d" stroke-width="5" paint-order="stroke" stroke-linejoin="round">${line.toUpperCase()}</text>`,
     )
     .join('\n');
-
-  let totalH = startY + displayLines.length * lineHeight + 40;
-  if (totalH > H) totalH = H;
 
   return `<svg width="${W}" height="${H}" xmlns="http://www.w3.org/2000/svg">
   <defs>
     <linearGradient id="fadeBottom" x1="0" y1="0" x2="0" y2="1">
       <stop offset="0%" stop-color="rgba(0,0,0,0)" />
-      <stop offset="30%" stop-color="rgba(0,0,0,0)" />
-      <stop offset="70%" stop-color="rgba(0,0,0,0.7)" />
+      <stop offset="40%" stop-color="rgba(0,0,0,0)" />
+      <stop offset="75%" stop-color="rgba(0,0,0,0.75)" />
       <stop offset="100%" stop-color="rgba(0,0,0,0.95)" />
     </linearGradient>
   </defs>
+  <rect x="0" y="0" width="${W}" height="12" fill="#e63946" />
   <rect width="${W}" height="${H}" fill="url(#fadeBottom)" />
   ${texts}
+  <text x="${W - 50}" y="${H - 30}" text-anchor="end" fill="rgba(255,255,255,0.5)" font-family="Arial, Helvetica, sans-serif" font-weight="600" font-size="18">noticiasdastro.site</text>
 </svg>`;
 }
 
