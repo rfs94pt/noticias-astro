@@ -1,7 +1,7 @@
 ---
 title: 'Inglaterra: maquinista ignorou sinal vermelho antes de colisão que fez 1 morto e 162 feridos'
 description: 'Investigação britânica revela falha humana no acidente ferroviário de Bedford. Maquinista Shaun Burton, de 60 anos, morreu na colisão. 53 passageiros continuam internados, oito em estado crítico.'
-date: 2026-06-24T15:27:46
+date: 2026-06-24T23:15:00
 category: 'Mundo'
 image: '/imagens/noticias/colisao-comboios-inglaterra-sinal-vermelho/colisao-comboios-inglaterra-sinal-vermelho.jpg'
 tags: ['Inglaterra', 'comboios', 'colisão', 'acidente', 'Bedford']
