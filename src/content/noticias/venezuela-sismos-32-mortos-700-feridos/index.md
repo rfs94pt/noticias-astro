@@ -1,7 +1,7 @@
 ---
 title: 'Dois sismos abalam a Venezuela: 32 mortos e mais de 700 feridos'
 description: 'Sismos de magnitude 7.2 e 7.5 atingiram a Venezuela na noite de quarta-feira. USGS estima que o número de vítimas pode chegar às 100 mil. Aeroporto de Caracas fechado e alerta de tsunami ativado.'
-date: 2026-06-25T07:17:00
+date: 2026-06-25T09:45:00
 category: 'Mundo'
 image: '/imagens/noticias/venezuela-sismos-32-mortos-700-feridos/venezuela-sismos-32-mortos-700-feridos.jpg'
 tags: ['Venezuela', 'sismos', 'terramoto', 'Caracas', 'vítimas', 'tsunami']
