@@ -28,8 +28,8 @@ O Ministério da Comunicação venezuelano garantiu que "todos os trabalhadores 
 
 <div class="video-container">
   <iframe
-    src="https://www.cmjornal.pt/cmtv/embed/433991"
-    title="Destruição no edifício da VTV em Caracas"
+    src="https://www.youtube.com/embed/nPXPr-xd2Ho"
+    title="Destruição na Venezuela após sismos"
     frameborder="0"
     allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
     allowfullscreen
