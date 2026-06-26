@@ -7,7 +7,7 @@ image: '/imagens/noticias/mulher-da-a-luz-escombros-venezuela/mulher-da-a-luz-es
 tags: ['Venezuela', 'sismos', 'parto', 'La Guaira', 'escombros', 'vídeo']
 author: "Notícias d'Astro"
 source: 'Correio da Manhã / 20 Minutos'
-sourceImage: 'https://images.unsplash.com/photo-1536098561742-ca998e48cbcc?w=1200&q=85'
+sourceImage: 'https://cdn.cmjornal.pt/images/2026-06/img_1280x722uu2026-06-26-14-55-03-2293577.jpg'
 ---
 
 Os dois sismos que atingiram a Venezuela na quarta-feira deixaram um rasto de destruição e tragédia com centenas de mortos e desaparecidos. Ainda assim, no meio do caos que assola o país, surge uma história de esperança: uma mulher deu à luz no meio dos escombros, num parto improvisado em plena via pública.
